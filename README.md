@@ -10,13 +10,13 @@ $ npm install -g forever
 $ bower install
 ~~~
 
-### For Development
+## For Development
 
 ~~~
 $ gulp
 ~~~
 
-### For Production
+## For Production
 
 ~~~
 $ gulp --release
