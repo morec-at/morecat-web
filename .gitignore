@@ -28,10 +28,12 @@ target
 # JRebel
 rebel.xml
 
-# Node
-node_modules/
+# JS
+node_modules
+bower_components
 
 # Misc
 !.gitkeep
 tmp
 logs/*
+_public

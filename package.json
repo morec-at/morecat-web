@@ -16,5 +16,14 @@
   },
   "dependencies": {
     "express": "~3.5.1"
+  },
+  "devDependencies": {
+    "gulp": "~3.6.0",
+    "gulp-uglify": "~0.2.1",
+    "gulp-clean": "~0.2.4",
+    "gulp-bower-files": "~0.2.1",
+    "gulp-if": "0.0.5",
+    "gulp-util": "~2.2.14",
+    "gulp-flatten": "0.0.2"
   }
 }
