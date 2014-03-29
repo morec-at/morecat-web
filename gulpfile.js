@@ -1,6 +1,7 @@
 var gulp = require('gulp')
   , util = require('gulp-util')
   , cond  = require('gulp-if')
+  , jshint = require('gulp-jshint')
   , concat = require('gulp-concat')
   , uglify = require('gulp-uglify')
   , flatten = require('gulp-flatten')
@@ -19,6 +20,8 @@ gulp.task('bower', function() {
 
 gulp.task('modules', function() {
   gulp.src('app/modules/**/*.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default'))
     .pipe(concat('main.js'))
     .pipe(cond(isRelease, uglify({preserveComments:'some'})))
     .pipe(gulp.dest('_public/assets/js'));

@@ -25,6 +25,7 @@
     "gulp-if": "0.0.5",
     "gulp-util": "~2.2.14",
     "gulp-flatten": "0.0.2",
-    "gulp-concat": "~2.2.0"
+    "gulp-concat": "~2.2.0",
+    "gulp-jshint": "~1.5.1"
   }
 }
