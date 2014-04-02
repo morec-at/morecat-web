@@ -33,6 +33,8 @@ gulp.task('templates', function() {
 });
 
 gulp.task('static', function() {
+  gulp.src('app/assets/css/**')
+    .pipe(gulp.dest('_public/assets/css'));
   gulp.src('app/assets/images/**')
     .pipe(gulp.dest('_public/assets/images'));
   gulp.src('app/index.html')

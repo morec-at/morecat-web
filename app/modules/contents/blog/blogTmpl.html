@@ -1,5 +1,11 @@
+<div class="page-header">
+  <h2>Blog</h2>
+</div>
 <ul>
   <li ng-repeat="entry in entries">
-    <h3><a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a> <small>{{entry.createdDate}}</small></h3>
+    <h3>
+      <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
+      <small>{{entry.tags}} {{entry.createdDate}} by {{entry.authorName}}</small>
+    </h3>
   </li>
 </ul>

@@ -4,18 +4,49 @@
   <meta charset="utf-8"/>
   <title>MoreCat Web</title>
   <base href="/"/>
+  <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="http://yandex.st/highlightjs/8.0/styles/github.min.css">
 </head>
 <body>
-<h1>MoreCat Web</h1>
-<ul>
-  <li><a href="/">Home</a></li>
-  <li><a href="/about">About</a></li>
-</ul>
-<div ng-view></div>
+
+<div id="wrap">
+  <header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">MoreCat Web</a>
+        </div>
+        <div id="navbar-main" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li ng-class="{ active: path.is('/') }"><a href="/">Blog</a></li>
+            <li ng-class="{ active: path.is('/about') }"><a href="/about">About</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <form class="navbar-form navbar-left">
+              <input type="text" class="form-control col-lg-8" placeholder="Search">
+            </form>
+          </ul>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section id="main" class="container">
+    <div ng-view></div>
+  </section>
+</div>
+
 <script src="assets/js/lib/angular.js"></script>
 <script src="assets/js/lib/angular-route.js"></script>
 <script src="assets/js/lib/underscore.js"></script>
+<script src="http://yandex.st/highlightjs/8.0/highlight.min.js"></script>
+<script src="http://pc035860.github.io/angular-highlightjs/angular-highlightjs.min.js"></script></body>
 
 <script src="assets/js/main.js"></script>
-</body>
 </html>
