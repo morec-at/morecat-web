@@ -1,5 +1,6 @@
 <h2>{{entry.title}}</h2>
-<p><small>{{entry.createdDate}} {{entry.createdTime}}</small></p>
 <div>
-  {{entry.content}}
+  <small>{{entry.tags}} {{entry.createdDate}} {{entry.createdTime}}</small>
+</div>
+<div ng-bind-html="trustedHtml">
 </div>
