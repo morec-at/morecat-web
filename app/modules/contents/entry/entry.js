@@ -1,6 +1,6 @@
 'use strict';
 
-var entry = angular.module('entry', ['hljs']);
+var entry = angular.module('entry', []);
 
 entry.config(['$routeProvider', function config($routeProvider) {
 
