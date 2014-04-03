@@ -1,18 +1,18 @@
 'use strict';
 
-var blog = angular.module('blog', []);
+var home = angular.module('home', []);
 
-blog.config(['$routeProvider', function config($routeProvider) {
+home.config(['$routeProvider', function config($routeProvider) {
 
   $routeProvider
-    .when('/blog', {
-      templateUrl: 'assets/partials/contents/blog/blogTmpl.html',
-      controller: 'BlogCtrl'
+    .when('/', {
+      templateUrl: 'assets/partials/contents/home/homeTmpl.html',
+      controller: 'homeCtrl'
     });
 
 }]);
 
-blog.controller('BlogCtrl', function($scope, $http) {
+home.controller('homeCtrl', function($scope, $http) {
   $http.get('http://localhost:8080/morecat/api/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
