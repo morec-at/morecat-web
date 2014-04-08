@@ -21,4 +21,7 @@ blog.controller('BlogCtrl', function($scope, $http) {
       entry.day = new Date(entry.createdDate).getUTCDate();
     });
   });
+  $http.get('http://localhost:8080/morecat/api/entries/tags').success(function(tags) {
+    $scope.tags = tags;
+  });
 });
