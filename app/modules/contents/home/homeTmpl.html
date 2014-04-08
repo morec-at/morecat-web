@@ -3,9 +3,13 @@
 </div>
 <ul>
   <li ng-repeat="entry in entries">
-    <h3>
-      <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
+    <div>
+      <h2>
+        <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
+      </h2>
       <small>{{entry.tags}} {{entry.createdDate}} by {{entry.authorName}}</small>
-    </h3>
+    </div>
+    <div ng-bind-html="entry.content">
+    </div>
   </li>
 </ul>
