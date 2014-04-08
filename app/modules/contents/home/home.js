@@ -7,12 +7,12 @@ home.config(['$routeProvider', function config($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'assets/partials/contents/home/homeTmpl.html',
-      controller: 'homeCtrl'
+      controller: 'HomeCtrl'
     });
 
 }]);
 
-home.controller('homeCtrl', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
+home.controller('HomeCtrl', ['$scope', '$http', '$sce', function($scope, $http, $sce) {
   $http.get('http://localhost:8080/morecat/api/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
