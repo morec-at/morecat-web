@@ -15,7 +15,6 @@ entry.config(['$routeProvider', function config($routeProvider) {
 entry.controller('EntryCtrl', ['$scope', '$routeParams', '$http', '$sce', function($scope, $routeParams, $http, $sce) {
   $http.get('http://localhost:8080/morecat/api/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
     $scope.entry = entry;
-    $scope.html = entry.content;
-    $scope.trustedHtml = $sce.trustAsHtml($scope.html);
+    $scope.trustedContent = $sce.trustAsHtml(entry.content);
   });
 }]);
