@@ -15,9 +15,9 @@ entry.config(['$routeProvider', function config($routeProvider) {
 entry.controller('EntryCtrl', ['$scope', '$routeParams', '$http', '$sce', function($scope, $routeParams, $http, $sce) {
   $http.get('http://localhost:8080/morecat/api/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
     $scope.entry = entry;
-    $scope.entry.year = new Date(entry.createdDate).getUTCFullYear();
-    $scope.entry.month = new Date(entry.createdDate).getUTCMonth() + 1;
-    $scope.entry.day = new Date(entry.createdDate).getUTCDate();
+    $scope.entry.year = new Date(entry.createdDate).getFullYear();
+    $scope.entry.month = new Date(entry.createdDate).getMonth() + 1;
+    $scope.entry.day = new Date(entry.createdDate).getDate();
     $scope.trustedContent = $sce.trustAsHtml(entry.content);
   });
 }]);

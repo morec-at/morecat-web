@@ -16,9 +16,9 @@ home.controller('HomeCtrl', ['$scope', '$http', '$sce', function($scope, $http, 
   $http.get('http://localhost:8080/morecat/api/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
-      entry.year = new Date(entry.createdDate).getUTCFullYear();
-      entry.month = new Date(entry.createdDate).getUTCMonth() + 1;
-      entry.day = new Date(entry.createdDate).getUTCDate();
+      entry.year = new Date(entry.createdDate).getFullYear();
+      entry.month = new Date(entry.createdDate).getMonth() + 1;
+      entry.day = new Date(entry.createdDate).getDate();
       entry.content = $sce.trustAsHtml(entry.content);
     });
   });
