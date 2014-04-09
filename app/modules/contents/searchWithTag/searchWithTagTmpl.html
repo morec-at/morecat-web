@@ -1,0 +1,20 @@
+<div class="page-header">
+  <h2>TAG ARCHIVES: {{tag}}</h2>
+</div>
+<ul>
+  <li ng-repeat="entry in entries">
+    <h3>
+      <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
+      <small>{{entry.tags}} {{entry.createdDate}} by {{entry.authorName}}</small>
+    </h3>
+  </li>
+</ul>
+
+<div>
+  <h3>TAGS</h3>
+  <ul>
+    <li ng-repeat="tag in tags">
+      <a href="/tags/{{tag}}">{{tag}}</a>
+    </li>
+  </ul>
+</div>
