@@ -12,5 +12,9 @@
 
 <div>
   <h3>Tags</h3>
-  {{tags}}
+  <ul>
+    <li ng-repeat="tag in tags">
+      <a href="/tags/{{tag}}">{{tag}}</a>
+    </li>
+  </ul>
 </div>

@@ -12,7 +12,7 @@ blog.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-blog.controller('BlogCtrl', function($scope, $http) {
+blog.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
   $http.get('http://localhost:8080/morecat/api/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
@@ -24,4 +24,4 @@ blog.controller('BlogCtrl', function($scope, $http) {
   $http.get('http://localhost:8080/morecat/api/entries/tags').success(function(tags) {
     $scope.tags = tags;
   });
-});
+}]);
