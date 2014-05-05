@@ -1,21 +1,6 @@
 <div class="page-header">
   <h2>ARCHIVES</h2>
 </div>
-<ul>
-  <li ng-repeat="entry in entries">
-    <h3>
-      <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
-      <small>
-        <ul>
-          <li ng-repeat="tag in entry.tags">
-            <a href="/tags/{{tag}}">{{tag}}</a>
-          </li>
-        </ul>
-        {{entry.createdDate}} {{entry.createdTime}} by {{entry.authorName}}
-      </small>
-    </h3>
-  </li>
-</ul>
 
 <ul>
   <li ng-repeat="(year, entries) in years">
