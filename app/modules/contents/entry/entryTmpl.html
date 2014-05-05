@@ -3,12 +3,7 @@
     <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
   </h2>
   <small>
-    <ul class="tags">
-      <li ng-repeat="tag in entry.tags">
-        <a href="/tags/{{tag}}">{{tag}}</a>
-      </li>
-    </ul>
-    {{entry.createdDate}} {{entry.createdTime}} by {{entry.authorName}}
+    <span ng-bind-html="entry.inlineTags"></span> {{entry.createdDate}} {{entry.createdTime}} by {{entry.authorName}}
   </small>
 </div>
 

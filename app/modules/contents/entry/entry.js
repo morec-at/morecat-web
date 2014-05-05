@@ -19,5 +19,12 @@ entry.controller('EntryCtrl', ['$scope', '$routeParams', '$http', '$sce', functi
     $scope.entry.month = new Date(entry.createdDate).getMonth() + 1;
     $scope.entry.day = new Date(entry.createdDate).getDate();
     $scope.trustedContent = $sce.trustAsHtml(entry.content);
+    var inlineTags = '';
+    _.each(entry.tags, function(tag) {
+      inlineTags += '[<a href="/tags/' + tag + '">';
+      inlineTags += tag;
+      inlineTags += '</a>]';
+    });
+    entry.inlineTags = $sce.trustAsHtml(inlineTags);
   });
 }]);

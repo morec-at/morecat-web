@@ -5,14 +5,14 @@
   <li ng-repeat="entry in entries">
     <h3>
       <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
-      <small>{{entry.tags}} {{entry.createdDate}} by {{entry.authorName}}</small>
+      <small><span ng-bind-html="entry.inlineTags"></span> {{entry.createdDate}} by {{entry.authorName}}</small>
     </h3>
   </li>
 </ul>
 
 <div>
   <h3>TAGS</h3>
-  <ul>
+  <ul class="tags">
     <li ng-repeat="tag in tags">
       <a href="/tags/{{tag}}">{{tag}}</a>
     </li>
