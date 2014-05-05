@@ -28,7 +28,6 @@ blog.controller('BlogCtrl', ['$scope', '$http', function($scope, $http) {
     $scope.years = _.sortBy(years, function(year, key) {
       return -key;
     });
-    console.log($scope.years);
   });
   $http.get('http://localhost:8080/morecat/api/entries/tags').success(function(tags) {
     $scope.tags = tags;
