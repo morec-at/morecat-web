@@ -25,7 +25,7 @@
         <h3>
           <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
           <small>
-            <ul>
+            <ul class="tags">
               <li ng-repeat="tag in entry.tags">
                 <a href="/tags/{{tag}}">{{tag}}</a>
               </li>
@@ -40,7 +40,7 @@
 
 <div>
   <h3>TAGS</h3>
-  <ul>
+  <ul class="tags">
     <li ng-repeat="tag in tags">
       <a href="/tags/{{tag}}">{{tag}}</a>
     </li>
