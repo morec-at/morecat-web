@@ -11,3 +11,7 @@ ul.tags li {
   margin-right: 15px;
   text-align: center;
 }
+
+.header {
+  list-style-type: none;
+}
