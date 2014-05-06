@@ -12,5 +12,5 @@ app.get('/[^\.]+$', function(req, res) {
     .sendfile(__dirname + '/_public/index.html');
 });
 
-app.listen(8888); //the express server will start on port 8888
+app.listen(8888, 'localhost'); //the express server will start on port 8888
 console.log('started');
