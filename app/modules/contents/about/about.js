@@ -6,7 +6,12 @@ about.config(['$routeProvider', function config($routeProvider) {
 
   $routeProvider
     .when('/about', {
-      templateUrl: 'assets/partials/contents/about/aboutTmpl.html'
+      templateUrl: 'assets/partials/contents/about/aboutTmpl.html',
+      controller: 'AboutCtrl'
     });
 
+}]);
+
+about.controller('AboutCtrl', ['$rootScope', function($rootScope) {
+  $rootScope.title = 'About - MoreCat Web';
 }]);

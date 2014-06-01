@@ -12,8 +12,8 @@ entry.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-entry.controller('EntryCtrl', ['$scope', '$routeParams', '$http', '$sce', function($scope, $routeParams, $http, $sce) {
-  $http.get('http://localhost:8080/morecat/api/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
+entry.controller('EntryCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', function($rootScope, $scope, $routeParams, $http, $sce) {
+  $http.get('http://morecat.emamotor.org/morecat/api/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
     $scope.entry = entry;
     $scope.entry.year = new Date(entry.createdDate).getFullYear();
     $scope.entry.month = new Date(entry.createdDate).getMonth() + 1;
@@ -26,5 +26,6 @@ entry.controller('EntryCtrl', ['$scope', '$routeParams', '$http', '$sce', functi
       inlineTags += '</a>]';
     });
     entry.inlineTags = $sce.trustAsHtml(inlineTags);
+    $rootScope.title = entry.title + ' - MoreCat Web';
   });
 }]);
