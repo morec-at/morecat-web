@@ -8,6 +8,7 @@ $ cd morecat-web
 $ npm install
 $ npm install -g forever
 $ bower install
+$ forever start server.js
 ~~~
 
 ## For Development
