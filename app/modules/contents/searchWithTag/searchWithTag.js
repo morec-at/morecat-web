@@ -12,7 +12,7 @@ searchWithTag.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-searchWithTag.controller('$rootScope', 'searchWithTagCtrl', ['$scope', '$routeParams', '$http', '$sce', function($rootScope, $scope, $routeParams, $http, $sce) {
+searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', function($rootScope, $scope, $routeParams, $http, $sce) {
   $scope.tag = $routeParams.tag;
   $http.get('http://morecat.emamotor.org/morecat/api/entries/tags/' + $routeParams.tag).success(function(entries) {
     $scope.entries = entries;
