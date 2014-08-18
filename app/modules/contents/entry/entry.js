@@ -13,7 +13,7 @@ entry.config(['$routeProvider', function config($routeProvider) {
 }]);
 
 entry.controller('EntryCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', function($rootScope, $scope, $routeParams, $http, $sce) {
-  $http.get('http://morecat.emamotor.org/morecat/api/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
+  $http.get('http://morecat.emamotor.org/api/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
     $scope.entry = entry;
     $scope.entry.year = new Date(entry.createdDate).getFullYear();
     $scope.entry.month = new Date(entry.createdDate).getMonth() + 1;

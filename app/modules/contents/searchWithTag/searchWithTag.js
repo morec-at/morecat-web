@@ -14,7 +14,7 @@ searchWithTag.config(['$routeProvider', function config($routeProvider) {
 
 searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', function($rootScope, $scope, $routeParams, $http, $sce) {
   $scope.tag = $routeParams.tag;
-  $http.get('http://morecat.emamotor.org/morecat/api/entries/tags/' + $routeParams.tag).success(function(entries) {
+  $http.get('http://morecat.emamotor.org/api/entries/tags/' + $routeParams.tag).success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
       entry.year = new Date(entry.createdDate).getFullYear();
@@ -30,7 +30,7 @@ searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routePa
       $rootScope.title = 'Search With Tags - MoreCat Web';
     });
   });
-  $http.get('http://morecat.emamotor.org/morecat/api/entries/tags').success(function(tags) {
+  $http.get('http://morecat.emamotor.org/api/entries/tags').success(function(tags) {
     $scope.tags = tags;
   });
 }]);

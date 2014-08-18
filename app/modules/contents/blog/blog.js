@@ -13,7 +13,7 @@ blog.config(['$routeProvider', function config($routeProvider) {
 }]);
 
 blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', function($rootScope, $scope, $http, $sce) {
-  $http.get('http://morecat.emamotor.org/morecat/api/entries/').success(function(entries) {
+  $http.get('http://morecat.emamotor.org/api/entries/').success(function(entries) {
     _.each(entries, function(entry) {
       entry.year = new Date(entry.createdDate).getFullYear();
       entry.month = new Date(entry.createdDate).getMonth() + 1;
@@ -39,7 +39,7 @@ blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', function($
 
     $rootScope.title = 'Archives - MoreCat Web';
   });
-  $http.get('http://morecat.emamotor.org/morecat/api/entries/tags').success(function(tags) {
+  $http.get('http://morecat.emamotor.org/api/entries/tags').success(function(tags) {
     $scope.tags = tags;
   });
 }]);
