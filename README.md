@@ -21,12 +21,12 @@ git clone https://github.com/emag/morecat-web.git
 cd morecat-web
 ~~~
 
-~~~
+~~~ sh
 # Set Your MoreCat URL
 grep -lr "morecat.emamotor.org" | xargs sed -i "s/morecat\.emamotor\.org/<your-morecat-domain>:<your-morecat-port>/g"
 ~~~
 
-~~~
+~~~ sh
 npm install
 bower install
 forever start server.js
