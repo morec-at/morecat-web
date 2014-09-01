@@ -7,12 +7,17 @@ searchWithTag.config(['$routeProvider', function config($routeProvider) {
   $routeProvider
     .when('/tags/:tag', {
       templateUrl: 'assets/partials/contents/searchWithTag/searchWithTagTmpl.html',
-      controller: 'searchWithTagCtrl'
+      controller: 'searchWithTagCtrl',
+      resolve: {
+        tags: ['Tags', function(Tags) {
+          return Tags.getAll();
+        }]
+      }
     });
 
 }]);
 
-searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', function($rootScope, $scope, $routeParams, $http, $sce) {
+searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', function($rootScope, $scope, $routeParams, $http, $sce, tags) {
   $scope.tag = $routeParams.tag;
   $http.get('http://morecat.emamotor.org/api/entries/tags/' + $routeParams.tag).success(function(entries) {
     $scope.entries = entries;
@@ -30,7 +35,5 @@ searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routePa
       $rootScope.title = 'Search With Tags - MoreCat Web';
     });
   });
-  $http.get('http://morecat.emamotor.org/api/entries/tags').success(function(tags) {
-    $scope.tags = tags;
-  });
+  $scope.tags = tags;
 }]);
