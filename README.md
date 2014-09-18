@@ -41,7 +41,7 @@ gulp
 ## For Production
 
 ~~~ sh
-gulp --release
+gulp release --release
 ~~~
 
 access to `http://localhost:8888`
