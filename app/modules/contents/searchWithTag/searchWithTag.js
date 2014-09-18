@@ -17,9 +17,11 @@ searchWithTag.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', function($rootScope, $scope, $routeParams, $http, $sce, tags) {
+searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', 'configuration',
+                         function($rootScope, $scope, $routeParams, $http, $sce, tags, configuration) {
+
   $scope.tag = $routeParams.tag;
-  $http.get('http://morecat.emamotor.org/api/entries/tags/' + $routeParams.tag).success(function(entries) {
+  $http.get(configuration.apiUrl + '/entries/tags/' + $routeParams.tag).success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
       entry.year = new Date(entry.createdDate).getFullYear();
@@ -36,4 +38,5 @@ searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routePa
     });
   });
   $scope.tags = tags;
+
 }]);

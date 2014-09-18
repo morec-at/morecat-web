@@ -12,8 +12,10 @@ home.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', function($rootScope, $scope, $http, $sce) {
-  $http.get('http://morecat.emamotor.org/api/entries/').success(function(entries) {
+home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configuration',
+                function($rootScope, $scope, $http, $sce, configuration) {
+
+  $http.get(configuration.apiUrl + '/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
       entry.year = new Date(entry.createdDate).getFullYear();
@@ -30,4 +32,5 @@ home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', function($
       $rootScope.title = 'MoreCat Web';
     });
   });
+
 }]);

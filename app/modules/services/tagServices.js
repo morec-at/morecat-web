@@ -2,9 +2,9 @@
 
 var tagServices = angular.module('tagServices', []);
 
-tagServices.factory('Tags', ['$http', '$q', function($http, $q) {
+tagServices.factory('Tags', ['$http', '$q', 'configuration', function($http, $q, configuration) {
   function getAll() {
-    return  $http.get('http://morecat.emamotor.org/api/entries/tags').then(function(tags) {
+    return  $http.get(configuration.apiUrl + '/entries/tags').then(function(tags) {
       return tags.data;
     });
   }
