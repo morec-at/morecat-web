@@ -7,12 +7,17 @@ blog.config(['$routeProvider', function config($routeProvider) {
   $routeProvider
     .when('/blog', {
       templateUrl: 'assets/partials/contents/blog/blogTmpl.html',
-      controller: 'BlogCtrl'
+      controller: 'BlogCtrl',
+      resolve: {
+        tags: ['Tags', function(Tags) {
+          return Tags.getAll();
+        }]
+      }
     });
 
 }]);
 
-blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', function($rootScope, $scope, $http, $sce) {
+blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', function($rootScope, $scope, $http, $sce, tags) {
   $http.get('http://morecat.emamotor.org/api/entries/').success(function(entries) {
     _.each(entries, function(entry) {
       entry.year = new Date(entry.createdDate).getFullYear();
@@ -39,7 +44,6 @@ blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', function($
 
     $rootScope.title = 'Archives - MoreCat Web';
   });
-  $http.get('http://morecat.emamotor.org/api/entries/tags').success(function(tags) {
-    $scope.tags = tags;
-  });
+
+  $scope.tags = tags;
 }]);
