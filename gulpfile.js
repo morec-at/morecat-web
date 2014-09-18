@@ -7,6 +7,7 @@ var gulp = require('gulp')
   , flatten = require('gulp-flatten')
   , bower = require('gulp-bower-files')
   , clean = require('gulp-clean')
+  , replace = require('gulp-replace')
   ;
 
 isRelease = util.env.release;
@@ -22,6 +23,8 @@ gulp.task('modules', function() {
   gulp.src('app/modules/**/*.js')
     .pipe(jshint('.jshintrc'))
     .pipe(jshint.reporter('default'))
+    .pipe(cond(isRelease, replace(/\@apiUrl\@/, 'http://morecat.emamotor.org/api')))
+    .pipe(replace(/\@apiUrl\@/, 'http://localhost:8080/api'))
     .pipe(concat('main.js'))
     .pipe(cond(isRelease, uglify({preserveComments:'some'})))
     .pipe(gulp.dest('_public/assets/js'));
