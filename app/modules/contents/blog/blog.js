@@ -17,8 +17,10 @@ blog.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', function($rootScope, $scope, $http, $sce, tags) {
-  $http.get('http://morecat.emamotor.org/api/entries/').success(function(entries) {
+blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', 'configuration',
+                function($rootScope, $scope, $http, $sce, tags, configuration) {
+
+  $http.get(configuration.apiUrl + '/entries/').success(function(entries) {
     _.each(entries, function(entry) {
       entry.year = new Date(entry.createdDate).getFullYear();
       entry.month = new Date(entry.createdDate).getMonth() + 1;
@@ -46,4 +48,5 @@ blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', fu
   });
 
   $scope.tags = tags;
+
 }]);
