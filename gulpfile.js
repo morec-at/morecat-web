@@ -56,3 +56,7 @@ gulp.task('watch', function() {
 gulp.task('default', function() {
   gulp.run('bower', 'modules', 'templates', 'static', 'watch');
 });
+
+gulp.task('release', function() {
+  gulp.run('bower', 'modules', 'templates', 'static');
+});
