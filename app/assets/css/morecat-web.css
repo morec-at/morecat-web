@@ -80,6 +80,10 @@ a {
   padding-bottom: 15px;
 }
 
+#entry_body ul li {
+  padding: 3px 0;
+}
+
 /* footer */
 footer {
   color: #545f60;
