@@ -34,9 +34,11 @@ searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routePa
         inlineTags += '</a>]';
       });
       entry.inlineTags = $sce.trustAsHtml(inlineTags);
-      $rootScope.title = 'Search With Tags - MoreCat Web';
     });
   });
+
+  $rootScope.title = $routeParams.tag + ' - MoreCat Web';
+
   $scope.tags = tags;
 
 }]);

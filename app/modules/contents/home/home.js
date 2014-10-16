@@ -21,7 +21,6 @@ home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configura
       entry.year = new Date(entry.createdDate).getFullYear();
       entry.month = new Date(entry.createdDate).getMonth() + 1;
       entry.day = new Date(entry.createdDate).getDate();
-      entry.content = $sce.trustAsHtml(entry.content);
       var inlineTags = '';
       _.each(entry.tags, function(tag) {
         inlineTags += '[<a href="/tags/' + tag + '">';
@@ -29,8 +28,9 @@ home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configura
         inlineTags += '</a>]';
       });
       entry.inlineTags = $sce.trustAsHtml(inlineTags);
-      $rootScope.title = 'MoreCat Web';
     });
   });
+
+  $rootScope.title = 'MoreCat Web';
 
 }]);
