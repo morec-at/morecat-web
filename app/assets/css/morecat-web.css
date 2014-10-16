@@ -98,8 +98,17 @@ a {
 }
 
 #entry_meta {
-  padding-left: 15px;
   padding-bottom: 15px;
+}
+
+#entry_body h1,
+#entry_body h2,
+#entry_body h3,
+#entry_body h4,
+#entry_body h5,
+#entry_body h6 {
+  padding-bottom: 5px;
+  border-bottom: solid 1px #767f82;
 }
 
 #entry_body ul li {
