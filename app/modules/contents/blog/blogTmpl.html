@@ -22,9 +22,11 @@
 <section>
   <h2>Tags</h2>
 
-  <ul class="tags">
-    <li ng-repeat="tag in tags">
-      <a href="/tags/{{tag}}">{{tag}}</a>
-    </li>
-  </ul>
+  <div id="tags">
+    <ul>
+      <li ng-repeat="tag in tags">
+        <a href="/tags/{{tag}}">{{tag}}</a>
+      </li>
+    </ul>
+  </div>
 </section>

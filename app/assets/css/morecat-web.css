@@ -70,6 +70,24 @@ a {
   margin-top: 0;
 }
 
+/* tags */
+#tags ul {
+  margin: 0;
+  padding: 0;
+}
+
+#tags ul:after {
+  content: "";
+  clear: both;
+  display: block;
+}
+
+#tags ul li {
+  list-style: none;
+  float: left;
+  padding: 0 5px;
+}
+
 /* entry */
 #entry_title {
   margin-bottom: 10px;
