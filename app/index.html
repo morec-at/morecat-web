@@ -4,42 +4,55 @@
   <meta charset="utf-8"/>
   <title ng-bind="title">MoreCat Web</title>
   <base href="/"/>
-  <link rel="stylesheet" href="assets/css/bootstrap.min.css"/>
-  <link rel="stylesheet" href="assets/css/style.css"/>
+  <link rel="stylesheet" href="assets/css/normalize.css"/>
+  <link rel="stylesheet" href="assets/css/light-and-sexy-tabs.css"/>
+  <link rel="stylesheet" href="assets/css/morecat-web.css"/>
 </head>
 <body>
 
 <div id="wrap">
   <header>
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-main">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="#">MoreCat Web</a>
-        </div>
-        <div id="navbar-main" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li ng-class="{ active: path.is('/blog') }"><a href="/blog">Blog</a></li>
-            <li ng-class="{ active: path.is('/about') }"><a href="/about">About</a></li>
-          </ul>
-        </div>
-      </div>
+    <h1 id="site_title">MoreCat Web</h1>
+    <nav id="global_navi">
+      <ul class="tabs group">
+        <li><a class="active" href="/">Home</a></li>
+        <li><a href="/blog">Blog</a></li>
+        <li><a href="/products">Products</a></li>
+        <li><a href="/about">About</a></li>
+      </ul>
     </nav>
   </header>
 
-  <section id="main" class="container">
-    <div ng-view></div>
+  <section id="content">
+    <article ng-view></article>
   </section>
+
+  <footer>
+    &copy; 2014 Yoshimasa Tanabe. Built with <a href="https://github.com/emag/morecat-web">MoreCat Web</a>.
+  </footer>
+
 </div>
 
 <script src="assets/js/lib/angular.js"></script>
 <script src="assets/js/lib/angular-route.js"></script>
 <script src="assets/js/lib/underscore.js"></script>
-
 <script src="assets/js/main.js"></script>
+<!-- TODO Directive -->
+<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+<script>
+  (function($) {
+
+    var tabs =  $(".tabs li a");
+
+    tabs.click(function() {
+      var content = this.hash.replace('/','');
+      tabs.removeClass("active");
+      $(this).addClass("active");
+      $("#content").find('p').hide();
+      $(content).fadeIn(200);
+    });
+
+  })(jQuery);
+</script>
 </body>
 </html>

@@ -1,28 +1,30 @@
-<div class="page-header">
-  <h2>ARCHIVES</h2>
-</div>
+<header id="page_header">
+  <h1>Blog</h1>
+</header>
 
-<ul>
-  <li ng-repeat="(year, entries) in years" class="header">
-    <h3>{{entries.year}}</h3>
+<section>
+  <h2>Archives</h2>
+
+  <div id="entries">
     <ul>
       <li ng-repeat="entry in entries">
-        <h3>
+        <h2>
           <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
-          <small>
-            <span ng-bind-html="entry.inlineTags"></span> {{entry.createdDate}} {{entry.createdTime}} by {{entry.authorName}}
-          </small>
-        </h3>
+        </h2>
+        <small>
+          <span ng-bind-html="entry.inlineTags"></span> <time>{{entry.createdDate}}T{{entry.createdTime}}</time> by {{entry.authorName}}
+        </small>
       </li>
     </ul>
-  </li>
-</ul>
+  </div>
+</section>
 
-<div>
-  <h3>TAGS</h3>
+<section>
+  <h2>Tags</h2>
+
   <ul class="tags">
     <li ng-repeat="tag in tags">
       <a href="/tags/{{tag}}">{{tag}}</a>
     </li>
   </ul>
-</div>
+</section>

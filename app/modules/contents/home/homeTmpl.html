@@ -1,18 +1,22 @@
-<div class="page-header">
-  <h2>LATEST ARTICLES</h2>
-</div>
-<ul>
-  <li ng-repeat="entry in entries" class="header">
-    <div>
-      <h2>
-        <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
-      </h2>
-      <small>
-        <span ng-bind-html="entry.inlineTags"></span> {{entry.createdDate}} {{entry.createdTime}} by {{entry.authorName}}
-      </small>
-    </div>
-    <div ng-bind-html="entry.content">
-    </div>
-    <hr/>
-  </li>
-</ul>
+<section id="page_header">
+  <h1>Hi, I'm a ...</h1>
+</section>
+
+<section>
+  <h2>Latest Posts</h2>
+
+  <div id="entries">
+    <ul>
+      <li ng-repeat="entry in entries">
+        <h2>
+          <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
+        </h2>
+        <small>
+          <span ng-bind-html="entry.inlineTags"></span> <time>{{entry.createdDate}}T{{entry.createdTime}}</time> by {{entry.authorName}}
+        </small>
+      </li>
+    </ul>
+  </div>
+
+  <a href="/blog">View all posts</a>
+</section>

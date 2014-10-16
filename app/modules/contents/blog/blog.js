@@ -21,6 +21,7 @@ blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', 'c
                 function($rootScope, $scope, $http, $sce, tags, configuration) {
 
   $http.get(configuration.apiUrl + '/entries/').success(function(entries) {
+    $scope.entries = entries;
     _.each(entries, function(entry) {
       entry.year = new Date(entry.createdDate).getFullYear();
       entry.month = new Date(entry.createdDate).getMonth() + 1;
@@ -33,19 +34,9 @@ blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', 'c
       });
       entry.inlineTags = $sce.trustAsHtml(inlineTags);
     });
-
-    var years = _.groupBy(entries, function(entry) {
-      return new Date(entry.createdDate).getFullYear();
-    });
-    years = _.each(years, function(year, key) {
-      year.year = key;
-    });
-    $scope.years = _.sortBy(years, function(year, key) {
-      return -key;
-    });
-
-    $rootScope.title = 'Archives - MoreCat Web';
   });
+
+  $rootScope.title = 'Blog - MoreCat Web';
 
   $scope.tags = tags;
 
