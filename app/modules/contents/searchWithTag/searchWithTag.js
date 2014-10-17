@@ -5,7 +5,7 @@ var searchWithTag = angular.module('searchWithTag', []);
 searchWithTag.config(['$routeProvider', function config($routeProvider) {
 
   $routeProvider
-    .when('/tags/:tag', {
+    .when('/blog/tags/:tag', {
       templateUrl: 'assets/partials/contents/searchWithTag/searchWithTagTmpl.html',
       controller: 'searchWithTagCtrl',
       resolve: {
@@ -29,7 +29,7 @@ searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routePa
       entry.day = new Date(entry.createdDate).getDate();
       var inlineTags = '';
       _.each(entry.tags, function(tag) {
-        inlineTags += '[<a href="/tags/' + tag + '">';
+        inlineTags += '[<a href="/blog/tags/' + tag + '">';
         inlineTags += tag;
         inlineTags += '</a>]';
       });

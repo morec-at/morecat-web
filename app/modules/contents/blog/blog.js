@@ -28,7 +28,7 @@ blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', 'c
       entry.day = new Date(entry.createdDate).getDate();
       var inlineTags = '';
       _.each(entry.tags, function(tag) {
-        inlineTags += '[<a href="/tags/' + tag + '">';
+        inlineTags += '[<a href="/blog/tags/' + tag + '">';
         inlineTags += tag;
         inlineTags += '</a>]';
       });

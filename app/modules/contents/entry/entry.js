@@ -23,7 +23,7 @@ entry.controller('EntryCtrl', ['$rootScope', '$scope', '$routeParams', '$http', 
     $scope.trustedContent = $sce.trustAsHtml(entry.content);
     var inlineTags = '';
     _.each(entry.tags, function(tag) {
-      inlineTags += '[<a href="/tags/' + tag + '">';
+      inlineTags += '[<a href="/blog/tags/' + tag + '">';
       inlineTags += tag;
       inlineTags += '</a>]';
     });

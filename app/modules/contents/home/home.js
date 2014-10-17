@@ -23,7 +23,7 @@ home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configura
       entry.day = new Date(entry.createdDate).getDate();
       var inlineTags = '';
       _.each(entry.tags, function(tag) {
-        inlineTags += '[<a href="/tags/' + tag + '">';
+        inlineTags += '[<a href="/blog/tags/' + tag + '">';
         inlineTags += tag;
         inlineTags += '</a>]';
       });
