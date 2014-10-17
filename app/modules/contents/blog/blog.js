@@ -17,18 +17,16 @@ blog.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', 'configuration',
-                function($rootScope, $scope, $http, $sce, tags, configuration) {
+blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', 'configuration', 'DateFormat',
+                function($rootScope, $scope, $http, $sce, tags, configuration, DateFormat) {
 
   $http.get(configuration.apiUrl + '/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
-      entry.year = new Date(entry.createdDate).getFullYear();
-      entry.month = new Date(entry.createdDate).getMonth() + 1;
-      entry.day = new Date(entry.createdDate).getDate();
+      entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;
       var inlineTags = '';
       _.each(entry.tags, function(tag) {
-        inlineTags += '[<a href="/tags/' + tag + '">';
+        inlineTags += '[<a href="/blog/tags/' + tag + '">';
         inlineTags += tag;
         inlineTags += '</a>]';
       });

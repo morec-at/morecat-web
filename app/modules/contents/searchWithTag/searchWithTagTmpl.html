@@ -8,8 +8,12 @@
   <ul>
     <li ng-repeat="entry in entries">
       <h3>
-        <a href="/{{entry.year}}/{{entry.month}}/{{entry.day}}/{{entry.permalink}}">{{entry.title}}</a>
-        <small><span ng-bind-html="entry.inlineTags"></span> {{entry.createdDate}} by {{entry.authorName}}</small>
+        <a href="{{entry.url}}">{{entry.title}}</a>
+        <small>
+          <span ng-bind-html="entry.inlineTags"></span>
+          <time ng-bind-template="{{entry.createdDate}}T{{entry.createdTime}}"></time>
+          <span ng-bind-template="by&nbsp;{{entry.authorName}}"></span>
+        </small>
       </h3>
     </li>
   </ul>
@@ -21,7 +25,7 @@
   <div id="tags">
     <ul>
       <li ng-repeat="tag in tags">
-        <a href="/tags/{{tag}}">{{tag}}</a>
+        <a href="/blog/tags/{{tag}}">{{tag}}</a>
       </li>
     </ul>
   </div>
