@@ -16,7 +16,7 @@
     <h1 id="site_title">MoreCat Web</h1>
     <nav id="global_navi">
       <ul class="tabs group">
-        <li><a class="active" href="/">Home</a></li>
+        <li><a href="/">Home</a></li>
         <li><a href="/blog">Blog</a></li>
         <li><a href="/products">Products</a></li>
         <li><a href="/about">About</a></li>
@@ -44,6 +44,13 @@
   (function($) {
 
     var tabs =  $(".tabs li a");
+
+    var basePath = '/' + this.location.pathname.split('/')[1];
+    _.each(tabs, function(tab) {
+      if (basePath === tab.pathname) {
+        $(tab).addClass("active");
+      }
+    });
 
     tabs.click(function() {
       var content = this.hash.replace('/','');
