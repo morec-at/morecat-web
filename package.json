@@ -1,6 +1,6 @@
 {
   "name": "morecat-web",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "A Web frontend powered by MoreCat",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -26,6 +26,7 @@
     "gulp-util": "~2.2.14",
     "gulp-flatten": "0.0.2",
     "gulp-concat": "~2.2.0",
-    "gulp-jshint": "~1.5.1"
+    "gulp-jshint": "~1.5.1",
+    "gulp-replace": "~0.4.0"
   }
 }

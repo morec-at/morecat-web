@@ -1,3 +1,3 @@
 'use strict';
 
-var index = angular.module('index', ['contents']);
+var app = angular.module('app', ['contents', 'configuration']);

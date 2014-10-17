@@ -23,7 +23,7 @@ cd morecat-web
 
 ~~~ sh
 # Set Your MoreCat URL
-grep -lr "morecat.emamotor.org" | xargs sed -i "s/morecat\.emamotor\.org/<your-morecat-domain>:<your-morecat-port>/g"
+sed -i "s/morecat\.emamotor\.org/<your-morecat-domain>:<your-morecat-port>/g" gulpfile.js
 ~~~
 
 ~~~ sh
@@ -41,7 +41,7 @@ gulp
 ## For Production
 
 ~~~ sh
-gulp --release
+gulp release --release
 ~~~
 
 access to `http://localhost:8888`
