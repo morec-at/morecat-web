@@ -17,16 +17,14 @@ searchWithTag.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', 'configuration',
-                         function($rootScope, $scope, $routeParams, $http, $sce, tags, configuration) {
+searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', 'configuration', 'DateFormat',
+                         function($rootScope, $scope, $routeParams, $http, $sce, tags, configuration, DateFormat) {
 
   $scope.tag = $routeParams.tag;
   $http.get(configuration.apiUrl + '/entries/tags/' + $routeParams.tag).success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
-      entry.year = new Date(entry.createdDate).getFullYear();
-      entry.month = new Date(entry.createdDate).getMonth() + 1;
-      entry.day = new Date(entry.createdDate).getDate();
+      entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;
       var inlineTags = '';
       _.each(entry.tags, function(tag) {
         inlineTags += '[<a href="/blog/tags/' + tag + '">';

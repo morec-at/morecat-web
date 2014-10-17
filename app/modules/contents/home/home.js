@@ -12,15 +12,13 @@ home.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configuration',
-                function($rootScope, $scope, $http, $sce, configuration) {
+home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configuration', 'DateFormat',
+                function($rootScope, $scope, $http, $sce, configuration, DateFormat) {
 
   $http.get(configuration.apiUrl + '/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
-      entry.year = new Date(entry.createdDate).getFullYear();
-      entry.month = new Date(entry.createdDate).getMonth() + 1;
-      entry.day = new Date(entry.createdDate).getDate();
+      entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;
       var inlineTags = '';
       _.each(entry.tags, function(tag) {
         inlineTags += '[<a href="/blog/tags/' + tag + '">';
