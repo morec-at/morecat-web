@@ -1,0 +1,12 @@
+#entry_body pre {
+  padding: 20px;
+  background-color: #333;
+  border-radius: 10px;
+}
+
+#entry_body li code,
+#entry_body p code {
+  padding: 2px;
+  background-color: #333;
+  border-radius: 5px;
+}

@@ -5,32 +5,38 @@ var searchWithTag = angular.module('searchWithTag', []);
 searchWithTag.config(['$routeProvider', function config($routeProvider) {
 
   $routeProvider
-    .when('/tags/:tag', {
+    .when('/blog/tags/:tag', {
       templateUrl: 'assets/partials/contents/searchWithTag/searchWithTagTmpl.html',
-      controller: 'searchWithTagCtrl'
+      controller: 'searchWithTagCtrl',
+      resolve: {
+        tags: ['Tags', function(Tags) {
+          return Tags.getAll();
+        }]
+      }
     });
 
 }]);
 
-searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', function($rootScope, $scope, $routeParams, $http, $sce) {
+searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', 'configuration', 'DateFormat',
+                         function($rootScope, $scope, $routeParams, $http, $sce, tags, configuration, DateFormat) {
+
   $scope.tag = $routeParams.tag;
-  $http.get('http://morecat.emamotor.org/api/entries/tags/' + $routeParams.tag).success(function(entries) {
+  $http.get(configuration.apiUrl + '/entries/tags/' + $routeParams.tag).success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
-      entry.year = new Date(entry.createdDate).getFullYear();
-      entry.month = new Date(entry.createdDate).getMonth() + 1;
-      entry.day = new Date(entry.createdDate).getDate();
+      entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;
       var inlineTags = '';
       _.each(entry.tags, function(tag) {
-        inlineTags += '[<a href="/tags/' + tag + '">';
+        inlineTags += '[<a href="/blog/tags/' + tag + '">';
         inlineTags += tag;
         inlineTags += '</a>]';
       });
       entry.inlineTags = $sce.trustAsHtml(inlineTags);
-      $rootScope.title = 'Search With Tags - MoreCat Web';
     });
   });
-  $http.get('http://morecat.emamotor.org/api/entries/tags').success(function(tags) {
-    $scope.tags = tags;
-  });
+
+  $rootScope.title = $routeParams.tag + ' - MoreCat Web';
+
+  $scope.tags = tags;
+
 }]);
