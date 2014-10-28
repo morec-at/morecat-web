@@ -17,11 +17,11 @@ searchWithTag.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', 'configuration', 'DateFormat',
-                         function($rootScope, $scope, $routeParams, $http, $sce, tags, configuration, DateFormat) {
+searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', 'DateFormat',
+                         function($rootScope, $scope, $routeParams, $http, $sce, tags, DateFormat) {
 
   $scope.tag = $routeParams.tag;
-  $http.get(configuration.apiUrl + '/entries/tags/' + $routeParams.tag).success(function(entries) {
+  $http.get($rootScope.apiUrl + '/entries/tags/' + $routeParams.tag).success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
       entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;

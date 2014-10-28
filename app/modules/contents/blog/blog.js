@@ -17,10 +17,10 @@ blog.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', 'configuration', 'DateFormat',
-                function($rootScope, $scope, $http, $sce, tags, configuration, DateFormat) {
+blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', '$sce', 'tags', 'DateFormat',
+                function($rootScope, $scope, $http, $sce, tags, DateFormat) {
 
-  $http.get(configuration.apiUrl + '/entries/').success(function(entries) {
+  $http.get($rootScope.apiUrl + '/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
       entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;

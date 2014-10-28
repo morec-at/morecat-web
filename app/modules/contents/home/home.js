@@ -12,10 +12,10 @@ home.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configuration', 'DateFormat',
-                function($rootScope, $scope, $http, $sce, configuration, DateFormat) {
+home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'DateFormat',
+                function($rootScope, $scope, $http, $sce, DateFormat) {
 
-  $http.get(configuration.apiUrl + '/entries/').success(function(entries) {
+  $http.get($rootScope.apiUrl + '/entries/').success(function(entries) {
     $scope.entries = entries;
     _.each(entries, function(entry) {
       entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;
@@ -27,6 +27,10 @@ home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configura
       });
       entry.inlineTags = $sce.trustAsHtml(inlineTags);
     });
+  });
+
+  $http.get($rootScope.apiUrl + '/settings/blog-description').success(function(blogDescription) {
+    $scope.blogDescription = blogDescription;
   });
 
   $rootScope.title = 'MoreCat Web';

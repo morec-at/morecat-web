@@ -12,10 +12,10 @@ entry.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-entry.controller('EntryCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'configuration',
-                 function($rootScope, $scope, $routeParams, $http, $sce, configuration) {
+entry.controller('EntryCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce',
+                 function($rootScope, $scope, $routeParams, $http, $sce) {
 
-  $http.get(configuration.apiUrl + '/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
+  $http.get($rootScope.apiUrl + '/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
     $scope.entry = entry;
     $scope.trustedContent = $sce.trustAsHtml(entry.content);
     var inlineTags = '';
