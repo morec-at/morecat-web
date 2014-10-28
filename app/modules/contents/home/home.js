@@ -15,7 +15,8 @@ home.config(['$routeProvider', function config($routeProvider) {
 home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'DateFormat',
                 function($rootScope, $scope, $http, $sce, DateFormat) {
 
-  $http.get($rootScope.apiUrl + '/entries/').success(function(entries) {
+  $http.get($rootScope.apiUrl + '/entries/recent').success(function(recent) {
+    var entries = recent.elements;
     $scope.entries = entries;
     _.each(entries, function(entry) {
       entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;
