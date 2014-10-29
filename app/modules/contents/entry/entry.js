@@ -7,25 +7,24 @@ entry.config(['$routeProvider', function config($routeProvider) {
   $routeProvider
     .when('/blog/:year/:month/:day/:permalink', {
       templateUrl: 'assets/partials/contents/entry/entryTmpl.html',
-      controller: 'EntryCtrl'
+      controller: 'EntryCtrl',
+      resolve: {
+        entry: ['Entry', '$route', function(Entry, $route) {
+          return Entry.getEntry($route.current.params.year,
+                                $route.current.params.month,
+                                $route.current.params.day,
+                                $route.current.params.permalink);
+        }]
+      }
     });
 
 }]);
 
-entry.controller('EntryCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce',
-                 function($rootScope, $scope, $routeParams, $http, $sce) {
+entry.controller('EntryCtrl', ['$rootScope', '$scope', 'entry',
+                 function($rootScope, $scope, entry) {
 
-  $http.get($rootScope.apiUrl + '/entries/' + $routeParams.year + '/' + $routeParams.month + '/' + $routeParams.day + '/' + $routeParams.permalink).success(function(entry) {
-    $scope.entry = entry;
-    $scope.trustedContent = $sce.trustAsHtml(entry.content);
-    var inlineTags = '';
-    _.each(entry.tags, function(tag) {
-      inlineTags += '[<a href="/blog/tags/' + tag + '">';
-      inlineTags += tag;
-      inlineTags += '</a>]';
-    });
-    entry.inlineTags = $sce.trustAsHtml(inlineTags);
-    $rootScope.title = entry.title + ' - MoreCat Web';
-  });
+  $scope.entry = entry;
+  $scope.content = entry.content;
+  $rootScope.title = entry.title + ' - ' + $rootScope.blogName;
 
 }]);
