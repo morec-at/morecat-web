@@ -13,5 +13,5 @@ products.config(['$routeProvider', function config($routeProvider) {
 }]);
 
 products.controller('ProductsCtrl', ['$rootScope', function($rootScope) {
-  $rootScope.title = 'Products - MoreCat Web';
+  $rootScope.title = 'Products - ' + $rootScope.blogName;
 }]);
