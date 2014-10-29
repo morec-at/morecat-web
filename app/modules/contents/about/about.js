@@ -13,5 +13,5 @@ about.config(['$routeProvider', function config($routeProvider) {
 }]);
 
 about.controller('AboutCtrl', ['$rootScope', function($rootScope) {
-  $rootScope.title = 'About - MoreCat Web';
+  $rootScope.title = 'About - ' + $rootScope.blogName;
 }]);
