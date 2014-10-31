@@ -1,5 +1,4 @@
-@import url(http://fonts.googleapis.com/css?family=Monofett);
-@import url(http://fonts.googleapis.com/css?family=Open+Sans:300,400&subset=latin,latin-ext);
+@import url(http://fonts.googleapis.com/css?family=Monofett|Patua+One|Open+Sans:300,400&subset=latin,latin-ext);
 
 body {
   color: #DDD;
@@ -13,8 +12,11 @@ article {
   padding-bottom: 30px;
 }
 
-p {
+h1, h2, h3, h4, h5, h6, p, li {
   font-family: 'Open Sans', sans-serif;
+}
+
+p {
   color: #ffffff;
   line-height: 26px;
   font-size: 18px;
@@ -72,6 +74,7 @@ a {
 
 #page_header h1 {
   margin-top: 0;
+  font-family: 'Patua One', cursive;
 }
 
 /* tags */
