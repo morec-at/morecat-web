@@ -26,5 +26,5 @@ entry.controller('EntryCtrl', ['$rootScope', '$scope', 'entry',
   $scope.entry = entry;
   $scope.content = entry.content;
   $rootScope.title = entry.title + ' - ' + $rootScope.blogName;
-
+  $rootScope.activeTab = 'blog';
 }]);

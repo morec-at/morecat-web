@@ -40,5 +40,5 @@ searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routePa
 
   $rootScope.title = $routeParams.tag + ' - ' + $rootScope.blogName;
   $scope.tags = tags;
-
+  $rootScope.activeTab = 'blog';
 }]);

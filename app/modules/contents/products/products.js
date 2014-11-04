@@ -14,4 +14,5 @@ products.config(['$routeProvider', function config($routeProvider) {
 
 products.controller('ProductsCtrl', ['$rootScope', function($rootScope) {
   $rootScope.title = 'Products - ' + $rootScope.blogName;
+  $rootScope.activeTab = 'products';
 }]);
