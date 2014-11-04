@@ -39,5 +39,5 @@ blog.controller('BlogCtrl', ['$rootScope', '$scope', '$http', 'page', 'tags', 'E
 
   $rootScope.title = 'Blog - ' + $rootScope.blogName;
   $scope.tags = tags;
-
+  $rootScope.activeTab = 'blog';
 }]);

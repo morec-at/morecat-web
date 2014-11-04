@@ -26,5 +26,5 @@ home.controller('HomeCtrl', ['$rootScope', '$scope', 'recent', 'blogDescription'
   $scope.entries = recent.elements;
   $scope.blogDescription = blogDescription;
   $rootScope.title = $rootScope.blogName;
-
+  $rootScope.activeTab = 'home';
 }]);
