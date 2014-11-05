@@ -9,6 +9,9 @@ searchWithTag.config(['$routeProvider', function config($routeProvider) {
       templateUrl: 'assets/partials/contents/searchWithTag/searchWithTagTmpl.html',
       controller: 'searchWithTagCtrl',
       resolve: {
+        page: ['Entry', '$route', function(Entry, $route) {
+          return Entry.getPageByTag($route.current.params.tag, 0, 5);
+        }],
         tags: ['Tags', function(Tags) {
           return Tags.getAll();
         }]
@@ -17,26 +20,25 @@ searchWithTag.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', '$sce', 'tags', 'configuration', 'DateFormat',
-                         function($rootScope, $scope, $routeParams, $http, $sce, tags, configuration, DateFormat) {
+searchWithTag.controller('searchWithTagCtrl', ['$rootScope', '$scope', '$routeParams', '$http', 'page', 'tags', 'Entry',
+                         function($rootScope, $scope, $routeParams, $http, page, tags, Entry) {
 
   $scope.tag = $routeParams.tag;
-  $http.get(configuration.apiUrl + '/entries/tags/' + $routeParams.tag).success(function(entries) {
-    $scope.entries = entries;
-    _.each(entries, function(entry) {
-      entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;
-      var inlineTags = '';
-      _.each(entry.tags, function(tag) {
-        inlineTags += '[<a href="/blog/tags/' + tag + '">';
-        inlineTags += tag;
-        inlineTags += '</a>]';
-      });
-      entry.inlineTags = $sce.trustAsHtml(inlineTags);
+  var entryPageByTag = page;
+  $scope.entries = entryPageByTag.elements;
+  $scope.totalItems = entryPageByTag.totalNumberOfElements;
+  $scope.currentPage = entryPageByTag.page + 1;
+  $scope.itemsPerPage = entryPageByTag.size;
+  $scope.maxSize = 5;
+
+  $scope.pageChanged = function() {
+    // TODO Use Entry.getPageByTag($scope.currentPage - 1, 5)
+    $http.get($rootScope.apiUrl + '/entries/tags/' + $routeParams.tag + '?page=' + (parseInt($scope.currentPage) - 1)).success(function(entryPageByTag) {
+     $scope.entries = Entry.setUpEntries(entryPageByTag.elements);
     });
-  });
+  };
 
-  $rootScope.title = $routeParams.tag + ' - MoreCat Web';
-
+  $rootScope.title = $routeParams.tag + ' - ' + $rootScope.blogName;
   $scope.tags = tags;
-
+  $rootScope.activeTab = 'blog';
 }]);

@@ -7,28 +7,24 @@ home.config(['$routeProvider', function config($routeProvider) {
   $routeProvider
     .when('/', {
       templateUrl: 'assets/partials/contents/home/homeTmpl.html',
-      controller: 'HomeCtrl'
+      controller: 'HomeCtrl',
+      resolve: {
+        recent: ['Entry', function(Entry) {
+          return Entry.getRecent();
+        }],
+        blogDescription: ['Setting', function(Setting) {
+          return Setting.getBlogDescription();
+        }]
+      }
     });
 
 }]);
 
-home.controller('HomeCtrl', ['$rootScope', '$scope', '$http', '$sce', 'configuration', 'DateFormat',
-                function($rootScope, $scope, $http, $sce, configuration, DateFormat) {
+home.controller('HomeCtrl', ['$rootScope', '$scope', 'recent', 'blogDescription',
+                function($rootScope, $scope, recent, blogDescription) {
 
-  $http.get(configuration.apiUrl + '/entries/').success(function(entries) {
-    $scope.entries = entries;
-    _.each(entries, function(entry) {
-      entry.url = '/blog/' + DateFormat.format(new Date(entry.createdDate), 'YYYY/MM/DD/') + entry.permalink;
-      var inlineTags = '';
-      _.each(entry.tags, function(tag) {
-        inlineTags += '[<a href="/blog/tags/' + tag + '">';
-        inlineTags += tag;
-        inlineTags += '</a>]';
-      });
-      entry.inlineTags = $sce.trustAsHtml(inlineTags);
-    });
-  });
-
-  $rootScope.title = 'MoreCat Web';
-
+  $scope.entries = recent.elements;
+  $scope.blogDescription = blogDescription;
+  $rootScope.title = $rootScope.blogName;
+  $rootScope.activeTab = 'home';
 }]);
