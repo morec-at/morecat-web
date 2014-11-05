@@ -26,7 +26,7 @@ entryService.factory('Entry', ['$rootScope', '$routeParams', '$http', '$sce', 'D
 
   function getEntry(year, month, day, permalink) {
     return $http.get($rootScope.apiUrl + '/entries/' + year + '/' + month + '/' + day + '/' + permalink).then(function(entry) {
-      setUpEntry(entry.data);
+      setUpEntry(entry.data.element);
       return entry.data;
     });
   }

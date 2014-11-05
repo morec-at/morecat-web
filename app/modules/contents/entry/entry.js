@@ -20,11 +20,25 @@ entry.config(['$routeProvider', function config($routeProvider) {
 
 }]);
 
-entry.controller('EntryCtrl', ['$rootScope', '$scope', 'entry',
-                 function($rootScope, $scope, entry) {
+entry.controller('EntryCtrl', ['$rootScope', '$scope', '$window', 'entry', 'DateFormat',
+                 function($rootScope, $scope, $window, entry, DateFormat) {
 
-  $scope.entry = entry;
-  $scope.content = entry.content;
-  $rootScope.title = entry.title + ' - ' + $rootScope.blogName;
+  $scope.entry = entry.element;
+  $scope.content = entry.element.content;
+
+  if (entry.next) {
+    $scope.nextTitle = entry.next.title;
+    $scope.nextUrl = '/blog/' + DateFormat.format(new Date(entry.next.createdDate), 'YYYY/MM/DD/') + entry.next.permalink;
+    $scope.isShowNext = true;
+  }
+  if (entry.previous) {
+    $scope.previousTitle = entry.previous.title;
+    $scope.previousUrl = '/blog/' + DateFormat.format(new Date(entry.previous.createdDate), 'YYYY/MM/DD/') + entry.previous.permalink;
+    $scope.isShowPrevious = true;
+  }
+
+  $rootScope.title = entry.element.title + ' - ' + $rootScope.blogName;
   $rootScope.activeTab = 'blog';
+
+  $window.scrollTo(0, 0);
 }]);
