@@ -2,9 +2,9 @@
 
 var tagServices = angular.module('tagServices', []);
 
-tagServices.factory('Tags', ['$http', '$q', 'configuration', function($http, $q, configuration) {
+tagServices.factory('Tags', ['$rootScope', '$http', '$q', function($rootScope, $http, $q) {
   function getAll() {
-    return  $http.get(configuration.apiUrl + '/entries/tags').then(function(tags) {
+    return  $http.get($rootScope.apiUrl + '/entries/tags').then(function(tags) {
       return tags.data;
     });
   }

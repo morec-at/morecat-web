@@ -19,6 +19,14 @@
       </li>
     </ul>
   </div>
+
+  <pagination total-items="totalItems" ng-model="currentPage"
+              items-per-page="itemsPerPage"  max-size="maxSize"
+              boundary-links="true"
+              previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+              ng-change="pageChanged()">
+  </pagination>
+
 </section>
 
 <section>

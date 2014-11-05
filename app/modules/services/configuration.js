@@ -2,7 +2,10 @@
 
 var configuration = angular.module('configuration', []);
 
-configuration.constant('configuration', {
-  apiUrl: '@apiUrl@'
-});
+configuration.run(['$http', '$rootScope', function($http, $rootScope) {
+  $rootScope.apiUrl = '@apiUrl@';
+  $http.get($rootScope.apiUrl + '/settings/blog-name').success(function(blogName) {
+    $rootScope.blogName = blogName;
+  });
+}]);
 

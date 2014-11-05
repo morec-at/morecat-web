@@ -9,5 +9,16 @@
   </div>
 </header>
 
-<section id="entry_body" ng-bind-html="trustedContent">
+<section id="entry_body" ng-bind-html="content">
 </section>
+
+<div class="pager">
+  <ul>
+    <li class="previous">
+      <a ng-show="isShowPrevious" ng-href="{{previousUrl}}">&laquo;&nbsp;Prev.</a>
+    </li>
+    <li class="next">
+      <a ng-show="isShowNext" ng-href="{{nextUrl}}">Next&nbsp;&raquo;</a>
+    </li>
+  </ul>
+</div>

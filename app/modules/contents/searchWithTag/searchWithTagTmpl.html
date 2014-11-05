@@ -5,18 +5,28 @@
 <section>
   <h2>Tag: {{tag}}</h2>
 
-  <ul>
-    <li ng-repeat="entry in entries">
-      <h3>
-        <a href="{{entry.url}}">{{entry.title}}</a>
+  <div id="entries">
+    <ul>
+      <li ng-repeat="entry in entries">
+        <h2>
+          <a href="{{entry.url}}">{{entry.title}}</a>
+        </h2>
         <small>
           <span ng-bind-html="entry.inlineTags"></span>
           <time ng-bind-template="{{entry.createdDate}}T{{entry.createdTime}}"></time>
           <span ng-bind-template="by&nbsp;{{entry.authorName}}"></span>
         </small>
-      </h3>
-    </li>
-  </ul>
+      </li>
+    </ul>
+  </div>
+
+  <pagination total-items="totalItems" ng-model="currentPage"
+              items-per-page="itemsPerPage"  max-size="maxSize"
+              boundary-links="true"
+              previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"
+              ng-change="pageChanged()">
+  </pagination>
+
 </section>
 
 <section>

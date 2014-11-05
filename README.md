@@ -22,11 +22,6 @@ cd morecat-web
 ~~~
 
 ~~~ sh
-# Set Your MoreCat URL
-sed -i "s/morecat\.emamotor\.org/<your-morecat-domain>:<your-morecat-port>/g" gulpfile.js
-~~~
-
-~~~ sh
 npm install
 bower install
 forever start server.js
@@ -35,13 +30,15 @@ forever start server.js
 ## For Development
 
 ~~~ sh
-gulp
+gulp --apiUrl=<morecat-api-url>
 ~~~
+
+`apiUrl` default value is `http://localhost:8080/api`.
 
 ## For Production
 
 ~~~ sh
-gulp release --release
+gulp release --apiUrl=<morecat-api-url> --release
 ~~~
 
 access to `http://localhost:8888`
